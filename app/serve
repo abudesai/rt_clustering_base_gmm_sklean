@@ -27,7 +27,7 @@ from algorithm.model import clustering as model
 prefix = "/opt/ml_vol/"
 data_schema_path = os.path.join(prefix, "inputs", "data_config")
 model_path = os.path.join(prefix, "model", "artifacts")
-failure_path = os.path.join(prefix, "outputs", "errors", "serve_failure")
+failure_path = os.path.join(prefix, "outputs", "errors", "serve_failure.txt")
 
 
 # get data schema - its needed to set the prediction field name
@@ -121,7 +121,6 @@ async def infer_file(
     # Do the prediction
     try:
         print(f"Invoked with {data.shape[0]} records")
-        print(data.head())
         inference_df = model_server.predict(data)
         # convert to the json response specification
         id_field_name = model_server.id_field_name
@@ -131,7 +130,6 @@ async def infer_file(
             infer_obj[id_field_name] = rec[id_field_name]
             infer_obj["prediction"] = rec["prediction"]
             predictions.append(infer_obj)
-        print(predictions)
         return {
             "success": True,
             "predictions": predictions,
