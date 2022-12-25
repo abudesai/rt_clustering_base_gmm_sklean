@@ -3,6 +3,7 @@
     "pp_step_names": {
       "COLUMN_SELECTOR": "column_selector",
       "STANDARD_SCALER": "standard_scaler",
+      "CUSTOM_SVD": "custom_svd",
       "X_SELECTOR": "x_selector"
     }
   },

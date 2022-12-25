@@ -30,6 +30,15 @@ def get_preprocess_pipeline(pp_params, model_cfg):
             ),
         )
     )
+    # apply truncated svd
+    pipe_steps.append(
+        (
+            pp_step_names["CUSTOM_SVD"],
+            preprocessors.CustomSVD(
+                id_col=pp_params["id_field"],
+            ),
+        )
+    )
     # X column selector
     pipe_steps.append(
         (
